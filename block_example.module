@@ -64,7 +64,7 @@ function block_user($type, &$edit, &$user, $category = NULL) {
       $items['Last Login'] = array(
         'title' => t('Last login'),
         'value' => format_date($user->login,'small'), 
-        'timezone' => format_timezone($user->timezone, 'small'),
+        'timezone' => format_timezone($user->timezone_name, 'small'),
         'class' => 'mymodule', 
           
       );      
