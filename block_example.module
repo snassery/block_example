@@ -219,7 +219,9 @@ function block_example_contents($which_block) {
       $result = array(
         '#markup' => variable_get('block_example_string',
           t('A default value. This block was created at %time',
+            t('Your timezone is %timezone'),
             array('%time' => date('c'))
+            array('%timezone' => timezone_name('c'))
           )
         ),
       );
