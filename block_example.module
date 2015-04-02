@@ -86,7 +86,7 @@ function block_example_page() {
   return $value;
   return $title;
   return $class;
-  return $timezone;
+  return $timezone_name;
 }
 /**
  * Implements hook_block_info().
