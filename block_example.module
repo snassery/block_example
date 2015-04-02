@@ -31,6 +31,23 @@ function block_example_menu() {
 
 /** implement login */
 
+function block_format_date($timestamp, $type = 'medium', $format = '', $timezone = NULL, $langcode = NULL) {
+  // Use the advanced drupal_static() pattern, since this is called very often.
+  static $drupal_static_fast;
+  if (!isset($drupal_static_fast)) {
+    $drupal_static_fast ['timezones'] = &drupal_static(__FUNCTION__);
+  }
+  $timezones = &$drupal_static_fast ['timezones'];
+
+  if (!isset($timezone)) {
+    $timezone = date_default_timezone_get();
+  }
+  // Store DateTimeZone objects in an array rather than repeatedly
+  // constructing identical objects over the life of a request.
+  if (!isset($timezones [$timezone])) {
+    $timezones [$timezone] = timezone_open($timezone);
+  }
+
 
 function block_user($type, &$edit, &$user, $category = NULL) {
   switch ($type) {
@@ -58,6 +75,7 @@ function block_example_page() {
   return $value;
   return $title;
   return $class;
+  return $timezone;
 }
 /**
  * Implements hook_block_info().
