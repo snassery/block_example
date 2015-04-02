@@ -51,6 +51,7 @@ function block_date_timezone_user($op, &$edit, &$account, $category = NULL) {
       }
     }
   }
+  return $timezone;
 }
 
 
@@ -64,7 +65,7 @@ function block_user($type, &$edit, &$user, $category = NULL) {
       $items['Last Login'] = array(
         'title' => t('Last login'),
         'value' => format_date($user->login,'small'), 
-        'date' => format_date_now($account->timezone_name, 'small'),
+        'timezone' => format_timezone($user->timezone_name, 'small'),
         'class' => 'mymodule', 
           
       );      
@@ -86,7 +87,7 @@ function block_example_page() {
   return $value;
   return $title;
   return $class;
-  return $time;
+  return $timezone;
 }
 /**
  * Implements hook_block_info().
